@@ -8,6 +8,10 @@ import (
 
 const (
 	healthLivenessPattern = "/health/liveness"
+	advicePattern         = "/advice"
+	trace2Pattern         = "/trace"
+	guidancePattern       = "/guidance"
+	metricPattern         = "/metric"
 
 	indexPattern   = "/debug/pprof/"
 	cmdLinePattern = "/debug/pprof/cmdline"
@@ -18,8 +22,10 @@ const (
 
 func initMux(r *http.ServeMux) {
 	addRoutes(r)
-	//r.Handle(runPattern, http.HandlerFunc(handler.RunHandler))
-	//r.Handle(actuatorPattern, http.HandlerFunc(middleware.ActuatorHandler))
+	r.Handle(advicePattern, http.HandlerFunc(handler.AdviceHandler))
+	r.Handle(trace2Pattern, http.HandlerFunc(handler.TraceHandler))
+	r.Handle(guidancePattern, http.HandlerFunc(handler.GuidanceHandler))
+	r.Handle(metricPattern, http.HandlerFunc(handler.MetricHandler))
 	r.Handle(healthLivenessPattern, http.HandlerFunc(handler.HealthLivenessHandler))
 }
 
