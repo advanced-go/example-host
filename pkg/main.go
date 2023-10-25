@@ -92,6 +92,6 @@ func HealthLivenessHandler(w http.ResponseWriter, r *http.Request) {
 	if status.OK() {
 		httpx.WriteResponse[runtime2.LogError](w, []byte("up"), status)
 	} else {
-		httpx.WriteResponse[runtime2.LogError](w, nil, status)
+		httpx.WriteMinResponse[runtime2.LogError](w, status)
 	}
 }
