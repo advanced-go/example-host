@@ -27,7 +27,7 @@ const (
 func main() {
 	start := time.Now()
 	displayRuntime[runtime2.StdOutput]()
-	handler, status := Startup(http.NewServeMux())
+	handler, status := startup(http.NewServeMux())
 	if !status.OK() {
 		os.Exit(1)
 	}
@@ -75,21 +75,15 @@ func displayRuntime[O runtime2.OutputHandler]() {
 	o.Write(fmt.Sprintf("cpu  : %v", runtime.NumCPU()))
 }
 
-func Startup(mux *http.ServeMux) (http.Handler, *runtime2.Status) {
-	initMux(mux)
-	return mux, runtime2.NewStatusOK()
-}
-
-func initMux(r *http.ServeMux) {
-	path := activity.EntryPath
-	fmt.Printf("path: %v", path)
+func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
 	r.Handle(activity.EntryPath, http.HandlerFunc(activity.EntryHandler))
 	r.Handle(slo.EntryPath, http.HandlerFunc(slo.EntryHandler))
 	r.Handle(timeseries.EntryPath, http.HandlerFunc(timeseries.EntryHandler))
-	r.Handle(healthLivenessPattern, http.HandlerFunc(HealthLivenessHandler))
+	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
+	return r, runtime2.NewStatusOK()
 }
 
-func HealthLivenessHandler(w http.ResponseWriter, r *http.Request) {
+func healthLivenessHandler(w http.ResponseWriter, r *http.Request) {
 	var status = runtime2.NewStatusOK()
 	if status.OK() {
 		httpx.WriteResponse[runtime2.LogError](w, []byte("up"), status)
