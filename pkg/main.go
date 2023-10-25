@@ -81,6 +81,8 @@ func Startup(mux *http.ServeMux) (http.Handler, *runtime2.Status) {
 }
 
 func initMux(r *http.ServeMux) {
+	path := activity.EntryPath
+	fmt.Printf("path: %v", path)
 	r.Handle(activity.EntryPath, http.HandlerFunc(activity.EntryHandler))
 	r.Handle(slo.EntryPath, http.HandlerFunc(slo.EntryHandler))
 	r.Handle(timeseries.EntryPath, http.HandlerFunc(timeseries.EntryHandler))
