@@ -1,7 +1,11 @@
 github.com/go-ai-agent/core v0.0.0-20230629191139-af443ff7771b h1:oOdAPN96P6V6ezBBzsauLIDA5407obXEmLCkIm414ss=
 github.com/go-ai-agent/core v0.0.0-20230629191139-af443ff7771b/go.mod h1:e8dEtRFLNPU1flNZyblxGpOqvByDf03CZXL7ZLBjjY8=
+github.com/go-ai-agent/core v0.0.0-20231025173212-6a5a91216f45 h1:T+DGBybZacE5Pk802Mehbybr/kVyJE4n3dl6EaYy6l4=
+github.com/go-ai-agent/core v0.0.0-20231025173212-6a5a91216f45/go.mod h1:eJTo4x8bOsmTTlhCB7maKxD5SNAIHaYqSe+r6aoXONM=
 github.com/go-ai-agent/example-domain v0.0.0-20230718123213-3b895703faa4 h1:7kqBVH5ZwcPtXmYGNyGyQXgc4mzvrCo7bsWm5sK4hTs=
 github.com/go-ai-agent/example-domain v0.0.0-20230718123213-3b895703faa4/go.mod h1:NkRTl8eNJc/WhQEsVfYHe7GYUxx8Bd2xafV913WKY2g=
+github.com/go-ai-agent/example-domain v0.0.0-20231025182949-be7eb6c927bb h1:uv8JnXiYxnGZ5dzg8kl9C1V58SbqyKvkbd6xSqS2zKU=
+github.com/go-ai-agent/example-domain v0.0.0-20231025182949-be7eb6c927bb/go.mod h1:pLN89moP6Tw/Eb2W0sRKqqhV/8sFd+v3LzdyV2K22so=
 github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaSAoJOfIk=
 github.com/golang/protobuf v1.5.3 h1:KhyjKVUg7Usr/dYsdSqoFveMYd5ko72D+zANwlG1mmg=
 github.com/golang/protobuf v1.5.3/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiuN0vRsmY=

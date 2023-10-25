@@ -3,8 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/go-ai-agent/core/httpx"
 	runtime2 "github.com/go-ai-agent/core/runtime"
-	"github.com/go-ai-agent/example-host/pkg/host"
+	"github.com/go-ai-agent/example-domain/activity"
+	"github.com/go-ai-agent/example-domain/slo"
+	"github.com/go-ai-agent/example-domain/timeseries"
 	"log"
 	"net/http"
 	"os"
@@ -14,21 +17,21 @@ import (
 )
 
 const (
-	addr         = "0.0.0.0:8080"
-	writeTimeout = time.Second * 300
-	readTimeout  = time.Second * 15
-	idleTimeout  = time.Second * 60
+	addr                  = "0.0.0.0:8080"
+	writeTimeout          = time.Second * 300
+	readTimeout           = time.Second * 15
+	idleTimeout           = time.Second * 60
+	healthLivenessPattern = "/health/liveness"
 )
 
 func main() {
 	start := time.Now()
 	displayRuntime[runtime2.StdOutput]()
-	handler, status := host.Startup[runtime2.LogError, runtime2.StdOutput](http.NewServeMux())
+	handler, status := Startup(http.NewServeMux())
 	if !status.OK() {
 		os.Exit(1)
 	}
 	fmt.Println(fmt.Sprintf("host started: %v", time.Since(start)))
-	defer host.Shutdown()
 
 	srv := http.Server{
 		Addr: addr,
@@ -70,4 +73,25 @@ func displayRuntime[O runtime2.OutputHandler]() {
 	o.Write(fmt.Sprintf("os   : %v", runtime.GOOS))
 	o.Write(fmt.Sprintf("arch : %v", runtime.GOARCH))
 	o.Write(fmt.Sprintf("cpu  : %v", runtime.NumCPU()))
+}
+
+func Startup(mux *http.ServeMux) (http.Handler, *runtime2.Status) {
+	initMux(mux)
+	return mux, runtime2.NewStatusOK()
+}
+
+func initMux(r *http.ServeMux) {
+	r.Handle(activity.EntryPath, http.HandlerFunc(activity.EntryHandler))
+	r.Handle(slo.EntryPath, http.HandlerFunc(slo.EntryHandler))
+	r.Handle(timeseries.EntryPath, http.HandlerFunc(timeseries.EntryHandler))
+	r.Handle(healthLivenessPattern, http.HandlerFunc(HealthLivenessHandler))
+}
+
+func HealthLivenessHandler(w http.ResponseWriter, r *http.Request) {
+	var status = runtime2.NewStatusOK()
+	if status.OK() {
+		httpx.WriteResponse[runtime2.LogError](w, []byte("up"), status)
+	} else {
+		httpx.WriteResponse[runtime2.LogError](w, nil, status)
+	}
 }
