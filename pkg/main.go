@@ -6,6 +6,7 @@ import (
 	"github.com/go-ai-agent/core/httpx"
 	runtime2 "github.com/go-ai-agent/core/runtime"
 	"github.com/go-ai-agent/example-domain/activity"
+	"github.com/go-ai-agent/example-domain/google"
 	"github.com/go-ai-agent/example-domain/slo"
 	"github.com/go-ai-agent/example-domain/timeseries"
 	"log"
@@ -26,7 +27,7 @@ const (
 
 func main() {
 	start := time.Now()
-	displayRuntime[runtime2.StdOutput]()
+	displayRuntime()
 	handler, status := startup(http.NewServeMux())
 	if !status.OK() {
 		os.Exit(1)
@@ -66,19 +67,19 @@ func main() {
 	<-idleConnsClosed
 }
 
-func displayRuntime[O runtime2.OutputHandler]() {
-	var o O
-	o.Write(fmt.Sprintf("addr : %v", addr))
-	o.Write(fmt.Sprintf("vers : %v", runtime.Version()))
-	o.Write(fmt.Sprintf("os   : %v", runtime.GOOS))
-	o.Write(fmt.Sprintf("arch : %v", runtime.GOARCH))
-	o.Write(fmt.Sprintf("cpu  : %v", runtime.NumCPU()))
+func displayRuntime() {
+	fmt.Printf("addr : %v\n", addr)
+	fmt.Printf("vers : %v\n", runtime.Version())
+	fmt.Printf("os   : %v\n", runtime.GOOS)
+	fmt.Printf("arch : %v\n", runtime.GOARCH)
+	fmt.Printf("cpu  : %v\n", runtime.NumCPU())
 }
 
 func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
-	r.Handle(activity.EntryPath, http.HandlerFunc(activity.EntryHandler))
-	r.Handle(slo.EntryPath, http.HandlerFunc(slo.EntryHandler))
-	r.Handle(timeseries.EntryPath, http.HandlerFunc(timeseries.EntryHandler))
+	r.Handle(activity.EntryEndpoint, http.HandlerFunc(activity.EntryHandler))
+	r.Handle(slo.EntryEndpoint, http.HandlerFunc(slo.EntryHandler))
+	r.Handle(timeseries.EntryEndpoint, http.HandlerFunc(timeseries.EntryHandler))
+	r.Handle(google.SearchEndpoint, http.HandlerFunc(google.SearchHandler))
 	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
 	return r, runtime2.NewStatusOK()
 }
@@ -86,8 +87,8 @@ func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
 func healthLivenessHandler(w http.ResponseWriter, r *http.Request) {
 	var status = runtime2.NewStatusOK()
 	if status.OK() {
-		httpx.WriteResponse[runtime2.LogError](w, []byte("up"), status)
+		httpx.WriteResponse[runtime2.LogError](w, []byte("up"), status, nil)
 	} else {
-		httpx.WriteMinResponse[runtime2.LogError](w, status)
+		httpx.WriteMinResponse[runtime2.LogError](w, status, nil)
 	}
 }

@@ -3,8 +3,8 @@ module github.com/go-ai-agent/example-host
 go 1.20
 
 require (
-	github.com/go-ai-agent/core v0.0.0-20231025173212-6a5a91216f45
-	github.com/go-ai-agent/example-domain v0.0.0-20231025182949-be7eb6c927bb
+	github.com/go-ai-agent/core v0.0.0-20231029112552-58e10f559a56
+	github.com/go-ai-agent/example-domain v0.0.0-20231029142120-09345353894d
 )
 
 require (
