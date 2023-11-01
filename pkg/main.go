@@ -76,10 +76,10 @@ func displayRuntime() {
 }
 
 func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
-	r.Handle(activity.EntryEndpoint, http.HandlerFunc(activity.EntryHandler))
-	r.Handle(slo.EntryEndpoint, http.HandlerFunc(slo.EntryHandler))
-	r.Handle(timeseries.EntryEndpoint, http.HandlerFunc(timeseries.EntryHandler))
-	r.Handle(google.SearchEndpoint, http.HandlerFunc(google.SearchHandler))
+	r.Handle(activity.HttpHandlerEndpoint, http.HandlerFunc(activity.HttpHandler))
+	r.Handle(slo.HttpHandlerEndpoint, http.HandlerFunc(slo.HttpHandler))
+	r.Handle(timeseries.HttpHandlerEndpoint, http.HandlerFunc(timeseries.HttpHandler))
+	r.Handle(google.HttpHandlerEndpoint, http.HandlerFunc(google.HttpHandler))
 	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
 	return r, runtime2.NewStatusOK()
 }
@@ -89,6 +89,6 @@ func healthLivenessHandler(w http.ResponseWriter, r *http.Request) {
 	if status.OK() {
 		httpx.WriteResponse[runtime2.LogError](w, []byte("up"), status, nil)
 	} else {
-		httpx.WriteMinResponse[runtime2.LogError](w, status, nil)
+		httpx.WriteResponse[runtime2.LogError](w, nil, status, nil)
 	}
 }
