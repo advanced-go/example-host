@@ -76,10 +76,10 @@ func displayRuntime() {
 }
 
 func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
-	r.Handle(activity.HttpHandlerEndpoint, http.HandlerFunc(activity.HttpHandler))
-	r.Handle(slo.HttpHandlerEndpoint, http.HandlerFunc(slo.HttpHandler))
-	r.Handle(timeseries.HttpHandlerEndpoint, http.HandlerFunc(timeseries.HttpHandler))
-	r.Handle(google.HttpHandlerEndpoint, http.HandlerFunc(google.HttpHandler))
+	r.Handle(activity.Pattern, http.HandlerFunc(activity.HttpHandler))
+	r.Handle(slo.Pattern, http.HandlerFunc(slo.HttpHandler))
+	r.Handle(timeseries.Pattern, http.HandlerFunc(timeseries.HttpHandler))
+	r.Handle(google.Pattern, http.HandlerFunc(google.HttpHandler))
 	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
 	return r, runtime2.NewStatusOK()
 }

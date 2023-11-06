@@ -1,6 +1,6 @@
-github.com/go-ai-agent/core v0.0.0-20231101130543-15855a91c0a1 h1:aahZZKwmrPYYbPhuGw2bHhlG8sOvnJEjGw46iHDqfu4=
-github.com/go-ai-agent/core v0.0.0-20231101130543-15855a91c0a1/go.mod h1:p9dPJMtXhk7hvA5XjVQAbC6xMtOIgeWQXHNeEZ5DM58=
-github.com/go-ai-agent/example-domain v0.0.0-20231101132039-e89b2fe3c0db h1:ThfY7zWjl3OpKyOLuTil5vPX868KjZVsnb6yhnmzshY=
-github.com/go-ai-agent/example-domain v0.0.0-20231101132039-e89b2fe3c0db/go.mod h1:7ZnVVqhtGcqIabV2zGt7Zq038DYA1fKt9nXj7KF1x2Y=
+github.com/go-ai-agent/core v0.0.0-20231106183840-af56aa0e8ad1 h1:9FjHGMPc7dWnXFuFK6iv/72MWbmf5JrStz88gKsuku4=
+github.com/go-ai-agent/core v0.0.0-20231106183840-af56aa0e8ad1/go.mod h1:K25Nm1JSMCfyivjVFcEzXpKQGXa8a/pIHiWaRbXzqYg=
+github.com/go-ai-agent/example-domain v0.0.0-20231106202739-d26c16055d04 h1:zOdkUy1Vu9tMsqXJysQKAkGFIXcShwza37OyNvegGIU=
+github.com/go-ai-agent/example-domain v0.0.0-20231106202739-d26c16055d04/go.mod h1:uGh5eLkREukw7Is7Jc2ky4Zxbgt1zzftblqTghvCOuM=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
