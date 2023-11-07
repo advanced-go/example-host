@@ -16,5 +16,7 @@ github.com/go-ai-agent/example-domain v0.0.0-20231107124909-7234fe232b1c h1:Baeh
 github.com/go-ai-agent/example-domain v0.0.0-20231107124909-7234fe232b1c/go.mod h1:oLeWzisCKA2/4IGAgwKjaJ34OU1Niamwf4+nZV+nJkI=
 github.com/go-ai-agent/example-domain v0.0.0-20231107132307-90544d4d0baf h1:FLHc+bhkQVEgz8I/kRdqZudnAfe5vFcoe42Blks1PtA=
 github.com/go-ai-agent/example-domain v0.0.0-20231107132307-90544d4d0baf/go.mod h1:oLeWzisCKA2/4IGAgwKjaJ34OU1Niamwf4+nZV+nJkI=
+github.com/go-ai-agent/postgresql v0.0.0-20231107162753-824d4c609990 h1:sPpZmG7K5CpAsiheZ7P/i7rBgkzfmzjRwSfHCGMUIIs=
+github.com/go-ai-agent/postgresql v0.0.0-20231107162753-824d4c609990/go.mod h1:Edwh/JkUKa5666vYg8hN28ceJDMw8H3t9NtXnlyX4MI=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=

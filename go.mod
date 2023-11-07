@@ -9,5 +9,6 @@ require (
 
 require (
 	github.com/felixge/httpsnoop v1.0.4 // indirect
+	github.com/go-ai-agent/postgresql v0.0.0-20231107162753-824d4c609990 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 )
