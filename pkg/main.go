@@ -36,7 +36,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println(fmt.Sprintf("started: %v", time.Since(start)))
+	fmt.Println(fmt.Sprintf("started : %v", time.Since(start)))
 
 	srv := http.Server{
 		Addr: addr,
@@ -72,12 +72,12 @@ func main() {
 }
 
 func displayRuntime() {
-	fmt.Printf("addr : %v\n", addr)
-	fmt.Printf("vers : %v\n", runtime.Version())
-	fmt.Printf("os   : %v\n", runtime.GOOS)
-	fmt.Printf("arch : %v\n", runtime.GOARCH)
-	fmt.Printf("cpu  : %v\n", runtime.NumCPU())
-	fmt.Printf("env  : %v\n", runtime2.EnvStr())
+	fmt.Printf("addr    : %v\n", addr)
+	fmt.Printf("vers    : %v\n", runtime.Version())
+	fmt.Printf("os      : %v\n", runtime.GOOS)
+	fmt.Printf("arch    : %v\n", runtime.GOARCH)
+	fmt.Printf("cpu     : %v\n", runtime.NumCPU())
+	fmt.Printf("env     : %v\n", runtime2.EnvStr())
 }
 
 func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
