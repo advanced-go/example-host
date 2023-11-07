@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/go-ai-agent/core/httpx"
+	log2 "github.com/go-ai-agent/core/log"
 	runtime2 "github.com/go-ai-agent/core/runtime"
 	"github.com/go-ai-agent/example-domain/activity"
 	"github.com/go-ai-agent/example-domain/google"
@@ -27,12 +28,15 @@ const (
 
 func main() {
 	start := time.Now()
+	// set runtime environment
+	//runtime2.SetStageEnvironment()
 	displayRuntime()
 	handler, status := startup(http.NewServeMux())
 	if !status.OK() {
 		os.Exit(1)
 	}
-	fmt.Println(fmt.Sprintf("host started: %v", time.Since(start)))
+
+	fmt.Println(fmt.Sprintf("started: %v", time.Since(start)))
 
 	srv := http.Server{
 		Addr: addr,
@@ -73,6 +77,7 @@ func displayRuntime() {
 	fmt.Printf("os   : %v\n", runtime.GOOS)
 	fmt.Printf("arch : %v\n", runtime.GOARCH)
 	fmt.Printf("cpu  : %v\n", runtime.NumCPU())
+	fmt.Printf("env  : %v\n", runtime2.EnvStr())
 }
 
 func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
@@ -81,7 +86,7 @@ func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
 	r.Handle(timeseries.Pattern, http.HandlerFunc(timeseries.HttpHandler))
 	r.Handle(google.Pattern, http.HandlerFunc(google.HttpHandler))
 	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
-	return r, runtime2.NewStatusOK()
+	return log2.HttpHostMetricsHandler(r, ""), runtime2.NewStatusOK()
 }
 
 func healthLivenessHandler(w http.ResponseWriter, r *http.Request) {
