@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/go-ai-agent/core/httpx"
-	log2 "github.com/go-ai-agent/core/log"
+	"github.com/go-ai-agent/core/http2"
+	"github.com/go-ai-agent/core/log2"
 	runtime2 "github.com/go-ai-agent/core/runtime"
 	"github.com/go-ai-agent/example-domain/activity"
 	"github.com/go-ai-agent/example-domain/google"
@@ -28,8 +28,9 @@ const (
 
 func main() {
 	start := time.Now()
-	// set runtime environment
-	//runtime2.SetStageEnvironment()
+	setRuntimeEnvironment()
+	setAccessLogging()
+
 	displayRuntime()
 	handler, status := startup(http.NewServeMux())
 	if !status.OK() {
@@ -80,6 +81,15 @@ func displayRuntime() {
 	fmt.Printf("env     : %v\n", runtime2.EnvStr())
 }
 
+func setRuntimeEnvironment() {
+	// Set runtime environment
+	//runtime2.SetStageEnvironment()
+}
+
+func setAccessLogging() {
+	log2.SetAccessHandler(nil)
+}
+
 func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
 	r.Handle(activity.Pattern, http.HandlerFunc(activity.HttpHandler))
 	r.Handle(slo.Pattern, http.HandlerFunc(slo.HttpHandler))
@@ -92,8 +102,8 @@ func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
 func healthLivenessHandler(w http.ResponseWriter, r *http.Request) {
 	var status = runtime2.NewStatusOK()
 	if status.OK() {
-		httpx.WriteResponse[runtime2.LogError](w, []byte("up"), status, nil)
+		http2.WriteResponse[runtime2.LogError](w, []byte("up"), status, nil)
 	} else {
-		httpx.WriteResponse[runtime2.LogError](w, nil, status, nil)
+		http2.WriteResponse[runtime2.LogError](w, nil, status, nil)
 	}
 }

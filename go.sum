@@ -8,6 +8,14 @@ github.com/go-ai-agent/core v0.0.0-20231107143230-3bb39c7bd343 h1:VOGq1JMeMo3Bo5
 github.com/go-ai-agent/core v0.0.0-20231107143230-3bb39c7bd343/go.mod h1:7ReZEgt5wnossL/Rcx47VnXmRsmHOOK6WzCeDs4cEQI=
 github.com/go-ai-agent/core v0.0.0-20231107161741-78d4857a63aa h1:ou4/dx5SKn9AAS7RruKGAk1KMABicbvtiSjDW1PXGfg=
 github.com/go-ai-agent/core v0.0.0-20231107161741-78d4857a63aa/go.mod h1:7ReZEgt5wnossL/Rcx47VnXmRsmHOOK6WzCeDs4cEQI=
+github.com/go-ai-agent/core v0.0.0-20231108153036-f93586748022 h1:/JJJsVMyluiNKuvl6lviTDYu4RcBzqJKi89mz29NK8Q=
+github.com/go-ai-agent/core v0.0.0-20231108153036-f93586748022/go.mod h1:7ReZEgt5wnossL/Rcx47VnXmRsmHOOK6WzCeDs4cEQI=
+github.com/go-ai-agent/core v0.0.0-20231110122232-6c56791f1ec4 h1:DMODG8K0XBiJBwBBiy3bd6P16ObmgWkmUuQb3ow/iTQ=
+github.com/go-ai-agent/core v0.0.0-20231110122232-6c56791f1ec4/go.mod h1:7ReZEgt5wnossL/Rcx47VnXmRsmHOOK6WzCeDs4cEQI=
+github.com/go-ai-agent/core v0.0.0-20231110150508-00f6c66fb00c h1:VwlfqVf/DA4gjYsV69370D6cj6syYYlvcVlmgea48yg=
+github.com/go-ai-agent/core v0.0.0-20231110150508-00f6c66fb00c/go.mod h1:7ReZEgt5wnossL/Rcx47VnXmRsmHOOK6WzCeDs4cEQI=
+github.com/go-ai-agent/core v0.0.0-20231110161306-908353af223e h1:MATEo3Evbckwd2DQgIINDIssUYNwxQZ7UNNR3TzPTLU=
+github.com/go-ai-agent/core v0.0.0-20231110161306-908353af223e/go.mod h1:7ReZEgt5wnossL/Rcx47VnXmRsmHOOK6WzCeDs4cEQI=
 github.com/go-ai-agent/example-domain v0.0.0-20231107121048-a4028ca019de h1:EDEjDjrFSFsBw4jvvI/l726zlZjsF1sjpoMhW8e9nmk=
 github.com/go-ai-agent/example-domain v0.0.0-20231107121048-a4028ca019de/go.mod h1:oLeWzisCKA2/4IGAgwKjaJ34OU1Niamwf4+nZV+nJkI=
 github.com/go-ai-agent/example-domain v0.0.0-20231107123518-e698125c4253 h1:H9PgfIZoFxW27TZemFbdI4cQxG+Li34t+uyNYuZ8zNs=
@@ -16,6 +24,12 @@ github.com/go-ai-agent/example-domain v0.0.0-20231107124909-7234fe232b1c h1:Baeh
 github.com/go-ai-agent/example-domain v0.0.0-20231107124909-7234fe232b1c/go.mod h1:oLeWzisCKA2/4IGAgwKjaJ34OU1Niamwf4+nZV+nJkI=
 github.com/go-ai-agent/example-domain v0.0.0-20231107132307-90544d4d0baf h1:FLHc+bhkQVEgz8I/kRdqZudnAfe5vFcoe42Blks1PtA=
 github.com/go-ai-agent/example-domain v0.0.0-20231107132307-90544d4d0baf/go.mod h1:oLeWzisCKA2/4IGAgwKjaJ34OU1Niamwf4+nZV+nJkI=
+github.com/go-ai-agent/example-domain v0.0.0-20231108155136-b59abc25e29b h1:CH8r9CrcOZbhuDxvIQMSL/X9cbDHZdQWCxlVubR0At0=
+github.com/go-ai-agent/example-domain v0.0.0-20231108155136-b59abc25e29b/go.mod h1:88PEHxZ6Mxwyxo15n+4vNFMPJTP3ECwnDZgXg5f234M=
+github.com/go-ai-agent/example-domain v0.0.0-20231109235953-b18aef499e24 h1:6kK/Ef4H4kzsa/RAvAmlm0vP2kiA/wFpBf0PyTp5Xs8=
+github.com/go-ai-agent/example-domain v0.0.0-20231109235953-b18aef499e24/go.mod h1:88PEHxZ6Mxwyxo15n+4vNFMPJTP3ECwnDZgXg5f234M=
+github.com/go-ai-agent/example-domain v0.0.0-20231110150904-e8d6e9e053ae h1:fW7o1Mq9LnX4D10Muwt9I/qKhfRBiVtrHQNxS2JZfK4=
+github.com/go-ai-agent/example-domain v0.0.0-20231110150904-e8d6e9e053ae/go.mod h1:RkONZkOaU6mFdXw7BXhzfGzEbpFJgeqdllO6i/REsQs=
 github.com/go-ai-agent/postgresql v0.0.0-20231107162753-824d4c609990 h1:sPpZmG7K5CpAsiheZ7P/i7rBgkzfmzjRwSfHCGMUIIs=
 github.com/go-ai-agent/postgresql v0.0.0-20231107162753-824d4c609990/go.mod h1:Edwh/JkUKa5666vYg8hN28ceJDMw8H3t9NtXnlyX4MI=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
