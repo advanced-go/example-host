@@ -83,11 +83,12 @@ func displayRuntime() {
 
 func setRuntimeEnvironment() {
 	// Set runtime environment
-	//runtime2.SetStageEnvironment()
+	//runtime2.SetTestEnvironment()
 }
 
 func setAccessLogging() {
-	log2.SetAccessHandler(nil)
+	//SetAccessHandler(nil)
+	log2.EnableDebugAccessHandler()
 }
 
 func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
