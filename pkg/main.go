@@ -92,7 +92,7 @@ func setAccessLogging() {
 	access.EnableDebugLogHandler()
 }
 
-func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
+func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	r.Handle(activity.Pattern, http.HandlerFunc(activity.HttpHandler))
 	r.Handle(slo.Pattern, http.HandlerFunc(slo.HttpHandler))
 	r.Handle(timeseries.Pattern, http.HandlerFunc(timeseries.HttpHandler))

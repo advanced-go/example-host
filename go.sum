@@ -1,7 +1,7 @@
-github.com/advanced-go/core v0.0.0-20231116194519-0527b2a5e051 h1:cetgjy8VbZC1CB39v+ujC1DTZfszan9STVgnnpZZEkA=
-github.com/advanced-go/core v0.0.0-20231116194519-0527b2a5e051/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
-github.com/advanced-go/example-domain v0.0.0-20231116194015-ac605f4dd6bb h1:Upg8Xv5mf2dsx+RoS48NaCtu6/2COUskDd4PffMAF0E=
-github.com/advanced-go/example-domain v0.0.0-20231116194015-ac605f4dd6bb/go.mod h1:Gm7WQgh4s2kiD5+MiYXINWj5FL+wQjXJwulc0QkOHPI=
+github.com/advanced-go/core v0.0.0-20231117164021-e56bc6e58994 h1:Q+AHL5UW9/ZVXT+RPRrzDypn81CgrlspkOG5ozjIkfU=
+github.com/advanced-go/core v0.0.0-20231117164021-e56bc6e58994/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
+github.com/advanced-go/example-domain v0.0.0-20231117163403-b00481d63b1a h1:TW2eVolMI2v49NFq2ricbddfxr8QTIxqIun78+Ev9Oc=
+github.com/advanced-go/example-domain v0.0.0-20231117163403-b00481d63b1a/go.mod h1:HWuicncMU7uXPEvVzbENA28yZpsagYPSjL6YST6cghY=
 github.com/felixge/httpsnoop v1.0.4 h1:NFTV2Zj1bL4mc9sqWACXbQFVBBg2W3GPvqp8/ESS2Wg=
 github.com/felixge/httpsnoop v1.0.4/go.mod h1:m8KPJKqk1gH5J9DgRY2ASl2lWCfGKXixSwevea8zH2U=
 github.com/google/uuid v1.4.0 h1:MtMxsa51/r9yyhkyLsVeVt0B+BGQZzpQiTQ4eHZ8bc4=
