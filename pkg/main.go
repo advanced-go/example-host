@@ -3,8 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/advanced-go/core/access"
+	"github.com/advanced-go/core/handler"
 	"github.com/advanced-go/core/http2"
-	"github.com/advanced-go/core/log2"
 	runtime2 "github.com/advanced-go/core/runtime"
 	"github.com/advanced-go/example-domain/activity"
 	"github.com/advanced-go/example-domain/google"
@@ -88,7 +89,7 @@ func setRuntimeEnvironment() {
 
 func setAccessLogging() {
 	//SetAccessHandler(nil)
-	log2.EnableDebugAccessHandler()
+	access.EnableDebugLogHandler()
 }
 
 func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
@@ -97,7 +98,7 @@ func startup(r *http.ServeMux) (http.Handler, *runtime2.Status) {
 	r.Handle(timeseries.Pattern, http.HandlerFunc(timeseries.HttpHandler))
 	r.Handle(google.Pattern, http.HandlerFunc(google.HttpHandler))
 	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
-	return log2.HttpHostMetricsHandler(r, ""), runtime2.NewStatusOK()
+	return handler.HttpHostMetricsHandler(r, ""), runtime2.NewStatusOK()
 }
 
 func healthLivenessHandler(w http.ResponseWriter, r *http.Request) {
