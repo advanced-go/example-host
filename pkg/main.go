@@ -7,6 +7,7 @@ import (
 	"github.com/advanced-go/core/handler"
 	"github.com/advanced-go/core/http2"
 	runtime2 "github.com/advanced-go/core/runtime"
+	"github.com/advanced-go/example-agent/agent"
 	"github.com/advanced-go/example-domain/activity"
 	"github.com/advanced-go/example-domain/google"
 	"github.com/advanced-go/example-domain/slo"
@@ -99,6 +100,8 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	r.Handle(timeseries.Pattern, http.HandlerFunc(timeseries.HttpHandler))
 	r.Handle(google.Pattern, http.HandlerFunc(google.HttpHandler))
 	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
+	// Start agent
+	agent.Run(time.Second * 2)
 	return handler.HttpHostMetricsHandler(r, ""), runtime2.NewStatusOK()
 }
 
