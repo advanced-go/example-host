@@ -90,6 +90,7 @@ func setRuntimeEnvironment() {
 func setAccessLogging() {
 	//SetAccessHandler(nil)
 	access.EnableDebugLogHandler()
+	access.DisableInternalLogging()
 }
 
 func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
