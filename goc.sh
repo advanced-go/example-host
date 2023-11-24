@@ -31,13 +31,13 @@ case "$1" in
         cover    
     ;;
     -t | --test)
-        go test -v -coverprofile="/tmp/coverage.tmp" --cover --tags "unit" ./pkg/...
+        go test -v -coverprofile="/tmp/coverage.tmp" --cover --tags "unit" ./...
     ;;
     -b | --build)
-        go build -o bin/service pkg/main.go
+        go build -o bin/service main.go
     ;;
     -r | --run)
-        go run pkg/main.go
+        go run main.go
     ;;
     -d | --docker)
         GOOS=linux GOARCH=amd64 go build -o ./build/go-test-linux-amd64 pkg/main.go && docker-compose up --build
