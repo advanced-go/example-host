@@ -40,7 +40,7 @@ case "$1" in
         go run main.go
     ;;
     -d | --docker)
-        GOOS=linux GOARCH=amd64 go build -o ./build/go-test-linux-amd64 pkg/main.go && docker-compose up --build
+        GOOS=linux GOARCH=amd64 go build -o ./build/go-test-linux-amd64 main.go && docker-compose up --build
     ;;
     *)
         show_invalid_usage
