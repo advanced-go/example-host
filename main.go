@@ -11,7 +11,8 @@ import (
 	"github.com/advanced-go/example-domain/activity"
 	"github.com/advanced-go/example-domain/google"
 	"github.com/advanced-go/example-domain/slo"
-	"github.com/advanced-go/example-domain/timeseries"
+	"github.com/advanced-go/example-domain/timeseries2"
+	"github.com/advanced-go/messaging/mux"
 	"log"
 	"net/http"
 	"os"
@@ -90,16 +91,17 @@ func setRuntimeEnvironment() {
 
 func setAccessLogging() {
 	//SetAccessHandler(nil)
-	access.EnableDebugLogHandler()
-	access.DisableInternalLogging()
+	access.EnableTestLogHandler()
+	//access.EnableInternalLogging()
 }
 
 func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
-	r.Handle(activity.Pattern, http.HandlerFunc(activity.HttpHandler))
-	r.Handle(slo.Pattern, http.HandlerFunc(slo.HttpHandler))
-	r.Handle(timeseries.Pattern, http.HandlerFunc(timeseries.HttpHandler))
-	r.Handle(google.Pattern, http.HandlerFunc(google.HttpHandler))
-	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
+	mux.Handle(activity.PkgPath, activity.HttpHandler)
+	mux.Handle(slo.PkgPath, slo.HttpHandler)
+	mux.Handle(timeseries2.PkgPath, timeseries2.HttpHandler)
+	mux.Handle(google.PkgPath, google.HttpHandler)
+	mux.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
+	r.Handle("/", http.HandlerFunc(mux.HttpHandler))
 	// Start agent
 	agent.Run(time.Second * 2)
 	return handler.HttpHostMetricsHandler(r, ""), runtime2.NewStatusOK()
