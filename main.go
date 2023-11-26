@@ -100,7 +100,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	mux.Handle(slo.PkgPath, slo.HttpHandler)
 	mux.Handle(timeseries2.PkgPath, timeseries2.HttpHandler)
 	mux.Handle(google.PkgPath, google.HttpHandler)
-	mux.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
+	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
 	r.Handle("/", http.HandlerFunc(mux.HttpHandler))
 	// Start agent
 	agent.Run(time.Second * 2)
