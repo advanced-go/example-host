@@ -7,11 +7,10 @@ import (
 	"github.com/advanced-go/core/handler"
 	"github.com/advanced-go/core/http2"
 	runtime2 "github.com/advanced-go/core/runtime"
-	"github.com/advanced-go/example-agent/agent"
 	"github.com/advanced-go/example-domain/activity"
 	"github.com/advanced-go/example-domain/google"
 	"github.com/advanced-go/example-domain/slo"
-	"github.com/advanced-go/example-domain/timeseries2"
+	"github.com/advanced-go/example-domain/timeseries"
 	"github.com/advanced-go/messaging/mux"
 	"log"
 	"net/http"
@@ -98,12 +97,12 @@ func setAccessLogging() {
 func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	mux.Handle(activity.PkgPath, activity.HttpHandler)
 	mux.Handle(slo.PkgPath, slo.HttpHandler)
-	mux.Handle(timeseries2.PkgPath, timeseries2.HttpHandler)
+	mux.Handle(timeseries.PkgPath, timeseries.HttpHandler)
 	mux.Handle(google.PkgPath, google.HttpHandler)
 	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
 	r.Handle("/", http.HandlerFunc(mux.HttpHandler))
 	// Start agent
-	agent.Run(time.Second * 2)
+	//agent.Run(time.Second * 2)
 	return handler.HttpHostMetricsHandler(r, ""), runtime2.NewStatusOK()
 }
 

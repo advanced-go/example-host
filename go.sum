@@ -8,6 +8,8 @@ github.com/advanced-go/core v0.0.0-20231126154530-188d2270ff03 h1:iIOJLi3Pd0/SuS
 github.com/advanced-go/core v0.0.0-20231126154530-188d2270ff03/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
 github.com/advanced-go/core v0.0.0-20231126165718-8d53175f79cb h1:6JhSIcJmeQUXgX9VaQA/owBm1wVVmN4iiElWueRyFzM=
 github.com/advanced-go/core v0.0.0-20231126165718-8d53175f79cb/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
+github.com/advanced-go/core v0.0.0-20231128163045-5ff44abbddf0 h1:D3cakEEHt2VmnTyI5oEuHbPn7IChKQQhgyTmNKgqoXQ=
+github.com/advanced-go/core v0.0.0-20231128163045-5ff44abbddf0/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
 github.com/advanced-go/example-agent v0.0.0-20231118125954-7597f33d8c1b h1:/oGj3EIwz7Q2HA4ZFVQnXETAC4QP0X24g/nOJAtLBzU=
 github.com/advanced-go/example-agent v0.0.0-20231118125954-7597f33d8c1b/go.mod h1:1pjw9h0QQcYi+Q7YY5vmQPviQKFSqfwH+/VjQFL850I=
 github.com/advanced-go/example-agent v0.0.0-20231124134634-9dcd08144337 h1:AEYJPL1GkIewZyDoO0rjY2hJSvQmSlgyRzjr89uAR2c=
@@ -32,6 +34,8 @@ github.com/advanced-go/example-domain v0.0.0-20231126140900-ccec8ae52434 h1:6HvD
 github.com/advanced-go/example-domain v0.0.0-20231126140900-ccec8ae52434/go.mod h1:tgHzsArsu3GfiOYmLVrl676z35qC1z4QmhbbjjL7il4=
 github.com/advanced-go/example-domain v0.0.0-20231126163428-a56a3212e30a h1:KlZBhm0jac1p+dmyKhmc2/zhZLpRUW8U03C4+1eCScw=
 github.com/advanced-go/example-domain v0.0.0-20231126163428-a56a3212e30a/go.mod h1:M7igvSCRbkfT5NQMB6fsT9jlrxFBdEHH9Kl4NO2zWNs=
+github.com/advanced-go/example-domain v0.0.0-20231128200252-7e484b2c8ff8 h1:0znOdOo4SaA2Ui8Bg0Y0boA+wKutDXGXxlUHgmrThqY=
+github.com/advanced-go/example-domain v0.0.0-20231128200252-7e484b2c8ff8/go.mod h1:M7igvSCRbkfT5NQMB6fsT9jlrxFBdEHH9Kl4NO2zWNs=
 github.com/advanced-go/messaging v0.0.0-20231126153458-7f081495d6e4 h1:PVfccs/TE+9l62MuNtpm87tqUXZvyTTBia9rahTtXC8=
 github.com/advanced-go/messaging v0.0.0-20231126153458-7f081495d6e4/go.mod h1:j1ZfTeN3EAlc5NnNWuXs7shiS2OrzES+g9a491vqPHU=
 github.com/felixge/httpsnoop v1.0.4 h1:NFTV2Zj1bL4mc9sqWACXbQFVBBg2W3GPvqp8/ESS2Wg=
