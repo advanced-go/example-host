@@ -3,9 +3,9 @@ module github.com/advanced-go/example-host
 go 1.21.4
 
 require (
-	github.com/advanced-go/core v0.0.0-20231128163045-5ff44abbddf0
-	github.com/advanced-go/example-agent v0.0.0-20231126110330-44cb160041e3
-	github.com/advanced-go/example-domain v0.0.0-20231128200252-7e484b2c8ff8
+	github.com/advanced-go/core v0.0.0-20231129162920-26be00401f6b
+	github.com/advanced-go/example-agent v0.0.0-20231129145928-0b6dc1cf68ef
+	github.com/advanced-go/example-domain v0.0.0-20231129163901-cb7f69e5dc62
 )
 
 require (
