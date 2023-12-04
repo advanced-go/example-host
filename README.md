@@ -14,4 +14,29 @@ access.EnableTestLogHandler()
 access.EnableInternalLogging()
 ~~~
 
+  2. Application startup. The messaging module contains an exchange that packages can register a mailbox with. This facilitates messaging and is utilized by the service host to startup
+     a package. The configuration needed for a package should be created by the service host. Messaging also supports a ping request for a selected package. The application agent is also
+     started. 
+~~~
+// Run startup where all registered resources/packages will be sent a startup message which may contain
+// package configuration information such as authentication, default values...
+m := createPackageConfiguration()
+status := exchange.Startup[runtime2.Log](time.Second*4, m)
+if !status.OK() {
+		return r, status
+}
+
+// Start application agent
+agent.Run(time.Second * 10)
+
+// Set runtime environment - defaults to debug
+runtime2.SetTestEnvironment()
+
+// Initialize access logging handler and options
+//access.SetLogHandler(nil)
+access.EnableTestLogHandler()
+access.EnableInternalLogging()
+~~~
+
+
 
