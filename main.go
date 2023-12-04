@@ -12,6 +12,8 @@ import (
 	"github.com/advanced-go/example-domain/google"
 	"github.com/advanced-go/example-domain/slo"
 	"github.com/advanced-go/example-domain/timeseries"
+	"github.com/advanced-go/messaging/core"
+	"github.com/advanced-go/messaging/exchange"
 	"github.com/advanced-go/messaging/mux"
 	"log"
 	"net/http"
@@ -31,15 +33,11 @@ const (
 
 func main() {
 	start := time.Now()
-	setRuntimeEnvironment()
-	setAccessLogging()
-
 	displayRuntime()
 	handler, status := startup(http.NewServeMux())
 	if !status.OK() {
 		os.Exit(1)
 	}
-
 	fmt.Println(fmt.Sprintf("started : %v", time.Since(start)))
 
 	srv := http.Server{
@@ -84,27 +82,42 @@ func displayRuntime() {
 	fmt.Printf("env     : %v\n", runtime2.EnvStr())
 }
 
-func setRuntimeEnvironment() {
-	// Set runtime environment
+func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
+	// Set runtime environment - default to debug
 	//runtime2.SetTestEnvironment()
-}
 
-func setAccessLogging() {
+	// Initialize access logging handler and options
 	//SetAccessHandler(nil)
 	access.EnableTestLogHandler()
 	//access.EnableInternalLogging()
-}
 
-func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
+	// Run startup
+	m := createPackageConfiguration()
+	status := exchange.Startup[runtime2.LogError](time.Second*4, m)
+	if !status.OK() {
+		var e runtime2.LogError
+		e.Handle(status, "", "main:startup")
+		return r, status
+	}
+
+	// Start application agent
+	agent.Run(time.Second * 10)
+
+	// Initialize multiplexers
 	mux.Handle(activity.PkgPath, activity.HttpHandler)
 	mux.Handle(slo.PkgPath, slo.HttpHandler)
 	mux.Handle(timeseries.PkgPath, timeseries.HttpHandler)
 	mux.Handle(google.PkgPath, google.HttpHandler)
 	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
 	r.Handle("/", http.HandlerFunc(mux.HttpHandler))
-	// Start agent
-	agent.Run(time.Second * 10)
+
+	// Add host metrics handler
 	return handler.HttpHostMetricsHandler(r, ""), runtime2.NewStatusOK()
+}
+
+// TO DO : create package configuration information for startup
+func createPackageConfiguration() core.Map {
+	return make(core.Map)
 }
 
 func healthLivenessHandler(w http.ResponseWriter, r *http.Request) {
