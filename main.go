@@ -102,11 +102,13 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	// Start application agent
 	agent.Run(time.Second * 10)
 
-	// Initialize multiplexers
+	// Initialize messaging mux for all handlers in example-domain
 	mux.Handle(activity.PkgPath, activity.HttpHandler)
 	mux.Handle(slo.PkgPath, slo.HttpHandler)
 	mux.Handle(timeseries.PkgPath, timeseries.HttpHandler)
 	mux.Handle(google.PkgPath, google.HttpHandler)
+
+	// Initialize http.ServeMux
 	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
 	r.Handle("/", http.HandlerFunc(mux.HttpHandler))
 
