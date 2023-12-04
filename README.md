@@ -23,19 +23,13 @@ access.EnableInternalLogging()
 m := createPackageConfiguration()
 status := exchange.Startup[runtime2.Log](time.Second*4, m)
 if !status.OK() {
-		return r, status
+    return r, status
 }
 
 // Start application agent
 agent.Run(time.Second * 10)
 
-// Set runtime environment - defaults to debug
-runtime2.SetTestEnvironment()
 
-// Initialize access logging handler and options
-//access.SetLogHandler(nil)
-access.EnableTestLogHandler()
-access.EnableInternalLogging()
 ~~~
 
 
