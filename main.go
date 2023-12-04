@@ -91,7 +91,8 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	access.EnableTestLogHandler()
 	//access.EnableInternalLogging()
 
-	// Run startup
+	// Run startup where all registered resources/packages will be sent a startup message which may also contain
+	// package configuration information such as authentication, default values...
 	m := createPackageConfiguration()
 	status := exchange.Startup[runtime2.Log](time.Second*4, m)
 	if !status.OK() {
@@ -109,7 +110,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
 	r.Handle("/", http.HandlerFunc(mux.HttpHandler))
 
-	// Add host metrics handler
+	// Add host metrics handler and ingress access logging
 	return handler.HttpHostMetricsHandler(r, ""), runtime2.NewStatusOK()
 }
 
