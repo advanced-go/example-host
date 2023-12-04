@@ -24,11 +24,11 @@ import (
 )
 
 const (
-	addr                  = "0.0.0.0:8080"
-	writeTimeout          = time.Second * 300
-	readTimeout           = time.Second * 15
-	idleTimeout           = time.Second * 60
-	healthLivenessPattern = "/health/liveness"
+	addr                    = "0.0.0.0:8080"
+	writeTimeout            = time.Second * 300
+	readTimeout             = time.Second * 15
+	idleTimeout             = time.Second * 60
+	healthLivelinessPattern = "/health/liveness"
 )
 
 func main() {
@@ -91,7 +91,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	access.EnableTestLogHandler()
 	//access.EnableInternalLogging()
 
-	// Run startup where all registered resources/packages will be sent a startup message which may also contain
+	// Run startup where all registered resources/packages will be sent a startup message which may contain
 	// package configuration information such as authentication, default values...
 	m := createPackageConfiguration()
 	status := exchange.Startup[runtime2.Log](time.Second*4, m)
@@ -102,14 +102,16 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	// Start application agent
 	agent.Run(time.Second * 10)
 
-	// Initialize messaging mux for all handlers in example-domain
+	// Initialize messaging mux for all HTTP handlers in example-domain
 	mux.Handle(activity.PkgPath, activity.HttpHandler)
 	mux.Handle(slo.PkgPath, slo.HttpHandler)
 	mux.Handle(timeseries.PkgPath, timeseries.HttpHandler)
 	mux.Handle(google.PkgPath, google.HttpHandler)
 
-	// Initialize http.ServeMux
-	r.Handle(healthLivenessPattern, http.HandlerFunc(healthLivenessHandler))
+	// Initialize health liveliness handler
+	r.Handle(healthLivelinessPattern, http.HandlerFunc(healthLivelinessHandler))
+
+	// Route all other requests to messaging mux
 	r.Handle("/", http.HandlerFunc(mux.HttpHandler))
 
 	// Add host metrics handler and ingress access logging
@@ -121,7 +123,7 @@ func createPackageConfiguration() core.Map {
 	return make(core.Map)
 }
 
-func healthLivenessHandler(w http.ResponseWriter, r *http.Request) {
+func healthLivelinessHandler(w http.ResponseWriter, r *http.Request) {
 	var status = runtime2.NewStatusOK()
 	if status.OK() {
 		http2.WriteResponse[runtime2.Log](w, []byte("up"), status, nil)
