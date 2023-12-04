@@ -28,9 +28,23 @@ if !status.OK() {
 
 // Start application agent
 agent.Run(time.Second * 10)
-
-
 ~~~
+
+  3. Request routing. The messaging module contains a multiplexer that routes requests to an HTTP handler. Routing requests to handlers that are not contained in the example-domiain are handled by the ServeMux. 
+ ~~~
+// Initialize messaging mux for all HTTP handlers in example-domain
+mux.Handle(activity.PkgPath, activity.HttpHandler)
+mux.Handle(slo.PkgPath, slo.HttpHandler)
+mux.Handle(timeseries.PkgPath, timeseries.HttpHandler)
+mux.Handle(google.PkgPath, google.HttpHandler)
+
+// Initialize health liveliness handler
+r.Handle(healthLivelinessPattern, http.HandlerFunc(healthLivelinessHandler))
+
+// Route all other requests to messaging mux
+r.Handle("/", http.HandlerFunc(mux.HttpHandler))
+~~~
+
 
 
 
