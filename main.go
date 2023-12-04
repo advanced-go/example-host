@@ -87,7 +87,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	//runtime2.SetTestEnvironment()
 
 	// Initialize access logging handler and options
-	//SetAccessHandler(nil)
+	//access.SetLogHandler(nil)
 	access.EnableTestLogHandler()
 	//access.EnableInternalLogging()
 
