@@ -45,7 +45,7 @@ r.Handle(healthLivelinessPattern, http.HandlerFunc(healthLivelinessHandler))
 r.Handle("/", http.HandlerFunc(mux.HttpHandler))
 ~~~
 
-  4. Initialize a handler for ingress access logging.
+  4. Initialize a handler for ingress traffic access logging.
 ~~~
 // Add host metrics handler and ingress access logging
 return handler.HttpHostMetricsHandler(r, ""), runtime2.StatusOK()
