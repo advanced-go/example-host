@@ -83,7 +83,7 @@ func displayRuntime() {
 }
 
 func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
-	// Set runtime environment - default to debug
+	// Set runtime environment - defaults to debug
 	//runtime2.SetTestEnvironment()
 
 	// Initialize access logging handler and options
@@ -93,10 +93,8 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 
 	// Run startup
 	m := createPackageConfiguration()
-	status := exchange.Startup[runtime2.LogError](time.Second*4, m)
+	status := exchange.Startup[runtime2.Log](time.Second*4, m)
 	if !status.OK() {
-		var e runtime2.LogError
-		e.Handle(status, "", "main:startup")
 		return r, status
 	}
 
@@ -123,8 +121,8 @@ func createPackageConfiguration() core.Map {
 func healthLivenessHandler(w http.ResponseWriter, r *http.Request) {
 	var status = runtime2.NewStatusOK()
 	if status.OK() {
-		http2.WriteResponse[runtime2.LogError](w, []byte("up"), status, nil)
+		http2.WriteResponse[runtime2.Log](w, []byte("up"), status, nil)
 	} else {
-		http2.WriteResponse[runtime2.LogError](w, nil, status, nil)
+		http2.WriteResponse[runtime2.Log](w, nil, status, nil)
 	}
 }
