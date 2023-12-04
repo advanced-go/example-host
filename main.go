@@ -111,7 +111,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	r.Handle("/", http.HandlerFunc(mux.HttpHandler))
 
 	// Add host metrics handler and ingress access logging
-	return handler.HttpHostMetricsHandler(r, ""), runtime2.NewStatusOK()
+	return handler.HttpHostMetricsHandler(r, ""), runtime2.StatusOK()
 }
 
 // TO DO : create package configuration information for startup
