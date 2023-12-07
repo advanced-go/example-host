@@ -39,9 +39,12 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println(fmt.Sprintf("started : %v", time.Since(start)))
-
+	httpPort := os.Getenv("PORT")
+	if httpPort == "" {
+		httpPort = addr
+	}
 	srv := http.Server{
-		Addr: addr,
+		Addr: httpPort, //addr,
 		// Good practice to set timeouts to avoid Slowloris attacks.
 		WriteTimeout: writeTimeout,
 		ReadTimeout:  readTimeout,
