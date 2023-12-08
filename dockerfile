@@ -32,7 +32,7 @@ EXPOSE 8080
 
 USER nonroot:nonroot
 
-ENTRYPOINT ["/docker-gs-ping"]
+ENTRYPOINT ["/example-host"]
 
 # Run
-CMD ["/example-host"]
+#CMD ["/example-host"]
