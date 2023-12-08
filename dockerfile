@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM golang:1.21
+FROM golang:1.21 AS build-stage
 
 # Set destination for COPY
 WORKDIR /app
@@ -14,7 +14,14 @@ RUN go mod download
 COPY *.go ./
 
 # Build
-RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-gs-ping
+RUN CGO_ENABLED=0 GOOS=linux go build -o /example-host
+
+# Deploy the application binary into a lean image
+FROM gcr.io/distroless/base-debian11 AS build-release-stage
+
+WORKDIR /
+
+COPY --from=build-stage /example-host /example-host
 
 # Optional:
 # To bind to a TCP port, runtime parameters must be supplied to the docker command.
@@ -23,5 +30,9 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-gs-ping
 # https://docs.docker.com/engine/reference/builder/#expose
 EXPOSE 8080
 
+USER nonroot:nonroot
+
+ENTRYPOINT ["/docker-gs-ping"]
+
 # Run
-CMD ["/docker-gs-ping"]
+CMD ["/example-host"]
