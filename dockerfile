@@ -35,4 +35,4 @@ USER nonroot:nonroot
 ENTRYPOINT ["/example-host"]
 
 # Run
-#CMD ["/example-host"]
+CMD ["/example-host"]
