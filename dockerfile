@@ -33,6 +33,3 @@ EXPOSE 8080
 USER nonroot:nonroot
 
 ENTRYPOINT ["/example-host"]
-
-# Run
-CMD ["/example-host"]
