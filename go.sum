@@ -20,6 +20,8 @@ github.com/advanced-go/core v0.0.0-20231202122929-ed55cbe1d78c h1:LDT3YLhca7FO0L
 github.com/advanced-go/core v0.0.0-20231202122929-ed55cbe1d78c/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
 github.com/advanced-go/core v0.0.0-20231204170332-5286012c385e h1:3OGvr2XO9wOplsp7Xpswt4cLfzYMhw9Ez8u1bw0XNOU=
 github.com/advanced-go/core v0.0.0-20231204170332-5286012c385e/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
+github.com/advanced-go/core v0.0.0-20231211223727-e918985bcfd7 h1:aHO/c8r/4PwZTTmFTY6crbu4buGluvecKeBCJVa84as=
+github.com/advanced-go/core v0.0.0-20231211223727-e918985bcfd7/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
 github.com/advanced-go/example-agent v0.0.0-20231118125954-7597f33d8c1b h1:/oGj3EIwz7Q2HA4ZFVQnXETAC4QP0X24g/nOJAtLBzU=
 github.com/advanced-go/example-agent v0.0.0-20231118125954-7597f33d8c1b/go.mod h1:1pjw9h0QQcYi+Q7YY5vmQPviQKFSqfwH+/VjQFL850I=
 github.com/advanced-go/example-agent v0.0.0-20231124134634-9dcd08144337 h1:AEYJPL1GkIewZyDoO0rjY2hJSvQmSlgyRzjr89uAR2c=
@@ -68,6 +70,10 @@ github.com/advanced-go/example-domain v0.0.0-20231204184841-ac791f7d492d h1:l0aY
 github.com/advanced-go/example-domain v0.0.0-20231204184841-ac791f7d492d/go.mod h1:CQq6tmnOuqmcjZl7rYuFNYRvWdgwDchP5mvVfUXb4pM=
 github.com/advanced-go/example-domain v0.0.0-20231204185622-9e68ea91625b h1:Cb5E3hZmW6OgCyG68DRDjEjZrSjDuDljibnzumB0TUI=
 github.com/advanced-go/example-domain v0.0.0-20231204185622-9e68ea91625b/go.mod h1:CQq6tmnOuqmcjZl7rYuFNYRvWdgwDchP5mvVfUXb4pM=
+github.com/advanced-go/example-domain v0.0.0-20231211230256-71bcce897bd8 h1:XMLJV5viI+YKOiuDj5SxlDFMZpjNa7x28N09Mlm+sXQ=
+github.com/advanced-go/example-domain v0.0.0-20231211230256-71bcce897bd8/go.mod h1:0cBmNL5/rZbcS5a0P/kMkkTkWeJvbO7GC1l2wra+ve8=
+github.com/advanced-go/example-domain v0.0.0-20231211231350-cb66e07d9c5b h1:2hSDBkambwlkospampIMjNpR+mj8BSn/11jTZNf+1wQ=
+github.com/advanced-go/example-domain v0.0.0-20231211231350-cb66e07d9c5b/go.mod h1:0cBmNL5/rZbcS5a0P/kMkkTkWeJvbO7GC1l2wra+ve8=
 github.com/advanced-go/messaging v0.0.0-20231126153458-7f081495d6e4 h1:PVfccs/TE+9l62MuNtpm87tqUXZvyTTBia9rahTtXC8=
 github.com/advanced-go/messaging v0.0.0-20231126153458-7f081495d6e4/go.mod h1:j1ZfTeN3EAlc5NnNWuXs7shiS2OrzES+g9a491vqPHU=
 github.com/advanced-go/messaging v0.0.0-20231204153323-8c1c2e256080 h1:NzQaFbsdkWPx07h5CpAc+4/++ow0P8/UWW6NJoQesiM=
