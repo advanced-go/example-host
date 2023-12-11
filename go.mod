@@ -4,7 +4,7 @@ go 1.21.4
 
 require (
 	github.com/advanced-go/core v0.0.0-20231211223727-e918985bcfd7
-	github.com/advanced-go/example-agent v0.0.0-20231129145928-0b6dc1cf68ef
+	github.com/advanced-go/example-agent v0.0.0-20231211234618-5a78307e555c
 	github.com/advanced-go/example-domain v0.0.0-20231211231350-cb66e07d9c5b
 )
 
