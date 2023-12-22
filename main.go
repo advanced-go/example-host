@@ -91,7 +91,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 
 	// Initialize access logging handler and options
 	//access.SetLogHandler(nil)
-	access.EnableTestLogHandler()
+	access.EnableTestLogger()
 	//access.EnableInternalLogging()
 
 	// Run startup where all registered resources/packages will be sent a startup message which may contain
