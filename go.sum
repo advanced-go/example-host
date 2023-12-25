@@ -45,6 +45,8 @@ github.com/advanced-go/example-agent v0.0.0-20231211234618-5a78307e555c h1:wdLKw
 github.com/advanced-go/example-agent v0.0.0-20231211234618-5a78307e555c/go.mod h1:vVoqq/VRAya0nmW0s+e9w06XXMU0QiR9hFe3mcR/AEI=
 github.com/advanced-go/example-agent v0.0.0-20231222195537-e9c9d9b63284 h1:2/ocXD9wININljxvfHKDf+PT3AIlaZr0wHpJCXkyhhs=
 github.com/advanced-go/example-agent v0.0.0-20231222195537-e9c9d9b63284/go.mod h1:4Xwmg5W3SjrWOfIwecNfZDKKHkEzSv8K4p3v6accn4U=
+github.com/advanced-go/example-agent v0.0.0-20231225150827-445750bd0231 h1:61wCgOo4I0s5kc667MxZGA4rl3u0MO4361hHQKuODlo=
+github.com/advanced-go/example-agent v0.0.0-20231225150827-445750bd0231/go.mod h1:iCPsUQcdDbXPV5SkBPkZ8bE/jbul99gS5PVrbd68hJ8=
 github.com/advanced-go/example-domain v0.0.0-20231124134150-d2951c40011a h1:sYmNLiJo7bbp5mltR8qcHoXh7VrhHLM1jab6Mrh2kd8=
 github.com/advanced-go/example-domain v0.0.0-20231124134150-d2951c40011a/go.mod h1:3OyIo9L1NROKlvBcjuaAq8VbXzt+pdCdfS7x0pt+wEM=
 github.com/advanced-go/example-domain v0.0.0-20231125155150-8e407db2892b h1:1GWJQdJl5pB46nUlWQ2VFNT6tqaOl5EeLf2wApCcjqY=
@@ -89,6 +91,8 @@ github.com/advanced-go/example-domain v0.0.0-20231221175414-55ed792ef704 h1:7+jx
 github.com/advanced-go/example-domain v0.0.0-20231221175414-55ed792ef704/go.mod h1:B9vVaeBnHR1IRS6+zduBtm7E+o0KgdDfpE+EryzJphM=
 github.com/advanced-go/example-domain v0.0.0-20231222184851-e3d0ebb327f1 h1:qOHmMD2CZtm8hxewpQY6bGbMryALBzZmv2u0bm9Y+RY=
 github.com/advanced-go/example-domain v0.0.0-20231222184851-e3d0ebb327f1/go.mod h1:zp4ufoObtcxns0wNcoGs2iZ9VMcjxZvmTi8l9kCccKI=
+github.com/advanced-go/example-domain v0.0.0-20231225150543-da806775599b h1:O5x7RHKKrx6s5mKZbyi9YUEGaCcJxEVHDTibP6vPAMU=
+github.com/advanced-go/example-domain v0.0.0-20231225150543-da806775599b/go.mod h1:4KmX94fT1KlVvL8DyQRQM4jc5U7CczD0gemO8EI8H7k=
 github.com/advanced-go/messaging v0.0.0-20231126153458-7f081495d6e4 h1:PVfccs/TE+9l62MuNtpm87tqUXZvyTTBia9rahTtXC8=
 github.com/advanced-go/messaging v0.0.0-20231126153458-7f081495d6e4/go.mod h1:j1ZfTeN3EAlc5NnNWuXs7shiS2OrzES+g9a491vqPHU=
 github.com/advanced-go/messaging v0.0.0-20231204153323-8c1c2e256080 h1:NzQaFbsdkWPx07h5CpAc+4/++ow0P8/UWW6NJoQesiM=
@@ -98,6 +102,8 @@ github.com/advanced-go/messaging v0.0.0-20231204182720-6e5a486bdb53/go.mod h1:NR
 github.com/advanced-go/messaging v0.0.0-20231220192105-86c5cce95dc0/go.mod h1:DonmYg8URk088g4ta+5bWRXT0x+h8RrVob+bnuvslFo=
 github.com/advanced-go/messaging v0.0.0-20231222183251-2961eaa57981 h1:YaTpDv7lf4JBGkvgSh7WjAfKqn4jUJf/383ZgiINF6A=
 github.com/advanced-go/messaging v0.0.0-20231222183251-2961eaa57981/go.mod h1:UApViZpTpYSJn+tF5J3FzBg5GFb3/eske4Nn+aZvTAI=
+github.com/advanced-go/messaging v0.0.0-20231225133917-831e9774238e h1:wn2A8QDpCl7T4mbFC0h6td2CgBRn/j4C27Enqs4oFY0=
+github.com/advanced-go/messaging v0.0.0-20231225133917-831e9774238e/go.mod h1:UApViZpTpYSJn+tF5J3FzBg5GFb3/eske4Nn+aZvTAI=
 github.com/felixge/httpsnoop v1.0.4 h1:NFTV2Zj1bL4mc9sqWACXbQFVBBg2W3GPvqp8/ESS2Wg=
 github.com/felixge/httpsnoop v1.0.4/go.mod h1:m8KPJKqk1gH5J9DgRY2ASl2lWCfGKXixSwevea8zH2U=
 github.com/google/uuid v1.4.0 h1:MtMxsa51/r9yyhkyLsVeVt0B+BGQZzpQiTQ4eHZ8bc4=
