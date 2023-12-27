@@ -12,7 +12,6 @@ import (
 	"github.com/advanced-go/example-domain/google"
 	"github.com/advanced-go/example-domain/slo"
 	"github.com/advanced-go/example-domain/timeseries"
-	"github.com/advanced-go/messaging/core"
 	"github.com/advanced-go/messaging/exchange"
 	"github.com/advanced-go/messaging/mux"
 	"log"
@@ -122,8 +121,8 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 }
 
 // TO DO : create package configuration information for startup
-func createPackageConfiguration() core.Map {
-	return make(core.Map)
+func createPackageConfiguration() exchange.ContentMap {
+	return make(exchange.ContentMap)
 }
 
 func healthLivelinessHandler(w http.ResponseWriter, r *http.Request) {
