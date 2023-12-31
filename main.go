@@ -6,14 +6,13 @@ import (
 	"github.com/advanced-go/core/access"
 	"github.com/advanced-go/core/handler"
 	"github.com/advanced-go/core/http2"
+	"github.com/advanced-go/core/messaging"
 	runtime2 "github.com/advanced-go/core/runtime"
 	"github.com/advanced-go/example-agent/agent"
 	"github.com/advanced-go/example-domain/activity"
 	"github.com/advanced-go/example-domain/google"
 	"github.com/advanced-go/example-domain/slo"
 	"github.com/advanced-go/example-domain/timeseries"
-	"github.com/advanced-go/messaging/exchange"
-	"github.com/advanced-go/messaging/mux"
 	"log"
 	"net/http"
 	"os"
@@ -28,6 +27,7 @@ const (
 	readTimeout             = time.Second * 15
 	idleTimeout             = time.Second * 60
 	healthLivelinessPattern = "/health/liveness"
+	healthReadinessPattern  = "/health/readiness"
 )
 
 func main() {
@@ -85,10 +85,14 @@ func displayRuntime() {
 }
 
 func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
-	// Set runtime environment - defaults to debug
+	// Initialize runtime environment - defaults to debug
 	//runtime2.SetTestEnvironment()
 
-	// Initialize access logging handler and options
+	// Set error handling formatter and logger
+	runtime2.SetFormatter(nil)
+	runtime2.SetLogger(nil)
+
+	// Set access logging handler and options
 	//access.SetLogHandler(nil)
 	access.EnableTestLogger()
 	//access.EnableInternalLogging()
@@ -96,7 +100,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	// Run startup where all registered resources/packages will be sent a startup message which may contain
 	// package configuration information such as authentication, default values...
 	m := createPackageConfiguration()
-	status := exchange.Startup[runtime2.Log](time.Second*4, m)
+	status := messaging.Startup[runtime2.Log](time.Second*4, m)
 	if !status.OK() {
 		return r, status
 	}
@@ -105,27 +109,37 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	agent.Run(time.Second * 10)
 
 	// Initialize messaging mux for all HTTP handlers in example-domain
-	mux.Handle(activity.PkgPath, activity.HttpHandler)
-	mux.Handle(slo.PkgPath, slo.HttpHandler)
-	mux.Handle(timeseries.PkgPath, timeseries.HttpHandler)
-	mux.Handle(google.PkgPath, google.HttpHandler)
+	messaging.Handle(activity.PkgPath, activity.HttpHandler)
+	messaging.Handle(slo.PkgPath, slo.HttpHandler)
+	messaging.Handle(timeseries.PkgPath, timeseries.HttpHandler)
+	messaging.Handle(google.PkgPath, google.HttpHandler)
 
-	// Initialize health liveliness handler
+	// Initialize health handlers
 	r.Handle(healthLivelinessPattern, http.HandlerFunc(healthLivelinessHandler))
+	r.Handle(healthReadinessPattern, http.HandlerFunc(healthReadinessHandler))
 
 	// Route all other requests to messaging mux
-	r.Handle("/", http.HandlerFunc(mux.HttpHandler))
+	r.Handle("/", http.HandlerFunc(messaging.HttpHandler))
 
 	// Add host metrics handler and ingress access logging
 	return handler.HttpHostMetricsHandler(r, ""), runtime2.StatusOK()
 }
 
 // TO DO : create package configuration information for startup
-func createPackageConfiguration() exchange.ContentMap {
-	return make(exchange.ContentMap)
+func createPackageConfiguration() messaging.ContentMap {
+	return make(messaging.ContentMap)
 }
 
 func healthLivelinessHandler(w http.ResponseWriter, r *http.Request) {
+	var status = runtime2.NewStatusOK()
+	if status.OK() {
+		http2.WriteResponse[runtime2.Log](w, []byte("up"), status, nil)
+	} else {
+		http2.WriteResponse[runtime2.Log](w, nil, status, nil)
+	}
+}
+
+func healthReadinessHandler(w http.ResponseWriter, r *http.Request) {
 	var status = runtime2.NewStatusOK()
 	if status.OK() {
 		http2.WriteResponse[runtime2.Log](w, []byte("up"), status, nil)

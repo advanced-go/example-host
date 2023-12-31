@@ -3,13 +3,12 @@ module github.com/advanced-go/example-host
 go 1.21.4
 
 require (
-	github.com/advanced-go/core v0.0.0-20231222200601-673d05ff557f
-	github.com/advanced-go/example-agent v0.0.0-20231227201911-d0b69e78df57
-	github.com/advanced-go/example-domain v0.0.0-20231227194558-6e3e9ce484d7
+	github.com/advanced-go/core v0.0.0-20231230171253-7a138ae54e06
+	github.com/advanced-go/example-agent v0.0.0-20231231110553-373f5edbbdb3
+	github.com/advanced-go/example-domain v0.0.0-20231230191345-3ea2ff26e2df
 )
 
 require (
-	github.com/advanced-go/messaging v0.0.0-20231227153933-11b8f486a9f4 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/google/uuid v1.4.0 // indirect
 )
