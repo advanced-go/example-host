@@ -1,5 +1,7 @@
 github.com/advanced-go/core v0.0.0-20231230171253-7a138ae54e06 h1:RDQL1jwNNKJke+xe2mzSH9GZsf/SxGi/7XvhqZnxsoU=
 github.com/advanced-go/core v0.0.0-20231230171253-7a138ae54e06/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
+github.com/advanced-go/core v0.0.0-20231231124242-c93e1c6aba48 h1:IHFpYRCzgJsJ4V0oXS2yPxTtxOe1/teYeE3Zyn5a05g=
+github.com/advanced-go/core v0.0.0-20231231124242-c93e1c6aba48/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
 github.com/advanced-go/example-agent v0.0.0-20231231110553-373f5edbbdb3 h1:QDxmo1hXGzUkJRAzdMPbel8WrvbfMROD34hxzk6TPgg=
 github.com/advanced-go/example-agent v0.0.0-20231231110553-373f5edbbdb3/go.mod h1:NsyVFgrFBmQDfrZtxDhjF70Pl5VP2O5TnOwI8MSyvUA=
 github.com/advanced-go/example-domain v0.0.0-20231230191345-3ea2ff26e2df h1:9tPTXQ8fr9VlsecevbkJiFhgWlW7Pg79FTRN1y6Z7wE=
