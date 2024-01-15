@@ -110,7 +110,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 
 	// Initialize messaging mux for the example-domain service HTTP handler
 	messaging.Handle(service.PkgPath, service.HttpHandler)
-	// Initialize exchange proxy
+	// Initialize exchange proxy for search provider
 	exchange.RegisterHandler("github/advanced-go/search/provider", provider.HttpHandler)
 
 	// Initialize health handlers
