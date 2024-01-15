@@ -9,10 +9,7 @@ import (
 	"github.com/advanced-go/core/messaging"
 	runtime2 "github.com/advanced-go/core/runtime"
 	"github.com/advanced-go/example-agent/agent"
-	"github.com/advanced-go/example-domain/activity"
-	"github.com/advanced-go/example-domain/google"
-	"github.com/advanced-go/example-domain/slo"
-	"github.com/advanced-go/example-domain/timeseries"
+	"github.com/advanced-go/example-domain/service"
 	"log"
 	"net/http"
 	"os"
@@ -31,6 +28,9 @@ const (
 )
 
 func main() {
+	// Initialize runtime environment - defaults to debug
+	//runtime2.SetStageEnvironment()
+
 	start := time.Now()
 	displayRuntime()
 	handler, status := startup(http.NewServeMux())
@@ -85,12 +85,9 @@ func displayRuntime() {
 }
 
 func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
-	// Initialize runtime environment - defaults to debug
-	//runtime2.SetTestEnvironment()
-
 	// Set error handling formatter and logger
-	runtime2.SetFormatter(nil)
-	runtime2.SetLogger(nil)
+	runtime2.SetErrorFormatter(nil)
+	runtime2.SetErrorLogger(nil)
 
 	// Set access logging handler and options
 	//access.SetLogHandler(nil)
@@ -108,11 +105,12 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	// Start application agent
 	agent.Run(time.Second * 10)
 
-	// Initialize messaging mux for all HTTP handlers in example-domain
-	messaging.Handle(activity.PkgPath, activity.HttpHandler)
-	messaging.Handle(slo.PkgPath, slo.HttpHandler)
-	messaging.Handle(timeseries.PkgPath, timeseries.HttpHandler)
-	messaging.Handle(google.PkgPath, google.HttpHandler)
+	// Initialize messaging mux for the example-domain service HTTP handler
+	//messaging.Handle(activity.PkgPath, activity.HttpHandler)
+	//messaging.Handle(slo.PkgPath, slo.HttpHandler)
+	//messaging.Handle(timeseries.PkgPath, timeseries.HttpHandler)
+	//messaging.Handle(google.PkgPath, google.HttpHandler)
+	messaging.Handle(service.PkgPath, service.HttpHandler)
 
 	// Initialize health handlers
 	r.Handle(healthLivelinessPattern, http.HandlerFunc(healthLivelinessHandler))
