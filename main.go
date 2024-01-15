@@ -15,6 +15,7 @@ import (
 	"os"
 	"os/signal"
 	"runtime"
+	"strconv"
 	"time"
 )
 
@@ -90,7 +91,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	runtime2.SetErrorLogger(nil)
 
 	// Set access logging handler and options
-	//access.SetLogHandler(nil)
+	access.SetLogger(logger)
 	access.EnableTestLogger()
 	//access.EnableInternalLogging()
 
@@ -144,4 +145,66 @@ func healthReadinessHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		http2.WriteResponse[runtime2.Log](w, nil, status, nil)
 	}
+}
+
+func logger(o access.Origin, traffic string, start time.Time, duration time.Duration, req *http.Request, resp *http.Response, routeName, routeTo string, threshold int, thresholdFlags string) {
+	if req == nil {
+		req, _ = http.NewRequest("", "https://somehost.com/search?q=test", nil)
+	}
+	if resp == nil {
+		resp = &http.Response{StatusCode: http.StatusOK}
+	}
+	url, _, _ := access.CreateUrlHostPath(req)
+	s := fmt.Sprintf("{"+
+		//"\"region\":%v, "+
+		//"\"zone\":%v, "+
+		//"\"sub-zone\":%v, "+
+		//"\"app\":%v, "+
+		//"\"instance-id\":%v, "+
+		"\"traffic\":\"%v\", "+
+		"\"start\":%v, "+
+		"\"duration\":%v, "+
+		//"\"request-id\":%v, "+
+		//"\"relates-to\":%v, "+
+		//"\"proto\":%v, "+
+		"\"method\":%v, "+
+		"\"uri\":%v, "+
+		//"\"host\":%v, "+
+		//"\"path\":%v, "+
+		"\"status-code\":%v, "+
+		//"\"status\":%v, "+
+		//"\"route\":%v, "+
+		//"\"route-to\":%v, "+
+		//"\"threshold\":%v, "+
+		"\"route\":%v }",
+		//"\"threshold-flags\":%v }",
+		//access.FmtJsonString(o.Region),
+		//access.FmtJsonString(o.Zone),
+		//access.FmtJsonString(o.SubZone),
+		//access.FmtJsonString(o.App),
+		//access.FmtJsonString(o.InstanceId),
+
+		traffic,
+		access.FmtTimestamp(start),
+		strconv.Itoa(access.Milliseconds(duration)),
+
+		//access.FmtJsonString(req.Header.Get(runtime2.XRequestId)),
+		//access.FmtJsonString(req.Header.Get(runtime2.XRelatesTo)),
+		//access.FmtJsonString(req.Proto),
+		access.FmtJsonString(req.Method),
+		access.FmtJsonString(url),
+		//access.FmtJsonString(host),
+		//access.FmtJsonString(path),
+
+		resp.StatusCode,
+		//access.FmtJsonString(resp.Status),
+
+		//access.FmtJsonString(routeName),
+		//access.FmtJsonString(routeTo),
+		//threshold,
+		//access.FmtJsonString(thresholdFlags),
+		access.FmtJsonString(routeName),
+	)
+	fmt.Printf("%v\n", s)
+	//return s
 }
