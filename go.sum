@@ -4,6 +4,8 @@ github.com/advanced-go/example-agent v0.0.0-20240115130224-06219914ac9c h1:vR4Px
 github.com/advanced-go/example-agent v0.0.0-20240115130224-06219914ac9c/go.mod h1:tk636pagS9fFYFIS7gYoZ02QD2VlRuEy5FZbGXpUHxs=
 github.com/advanced-go/example-domain v0.0.0-20240115130155-c0e24f81796e h1:KEtIQhV9qfbH6T9TfCrfyNgyq+K14xSAqINzH1jnKn8=
 github.com/advanced-go/example-domain v0.0.0-20240115130155-c0e24f81796e/go.mod h1:PrRihE0QYq9NPRxnitmUZzN/IAn/xvoEo8zIv9jR6Cw=
+github.com/advanced-go/search v0.0.0-20240115121816-df4de30d264d h1:pJickZLAdbJK8M1R7pDN4mtT7yiQ5rAKbhSInu0+C1c=
+github.com/advanced-go/search v0.0.0-20240115121816-df4de30d264d/go.mod h1:JpT6VntbZVxRgxmEuEolJ+/IoaYlF1nE1V+2B5+LS2E=
 github.com/felixge/httpsnoop v1.0.4 h1:NFTV2Zj1bL4mc9sqWACXbQFVBBg2W3GPvqp8/ESS2Wg=
 github.com/felixge/httpsnoop v1.0.4/go.mod h1:m8KPJKqk1gH5J9DgRY2ASl2lWCfGKXixSwevea8zH2U=
 github.com/google/uuid v1.4.0 h1:MtMxsa51/r9yyhkyLsVeVt0B+BGQZzpQiTQ4eHZ8bc4=

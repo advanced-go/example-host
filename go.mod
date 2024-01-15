@@ -6,6 +6,7 @@ require (
 	github.com/advanced-go/core v0.0.0-20240115121009-f8b57ab58ca3
 	github.com/advanced-go/example-agent v0.0.0-20240115130224-06219914ac9c
 	github.com/advanced-go/example-domain v0.0.0-20240115130155-c0e24f81796e
+	github.com/advanced-go/search v0.0.0-20240115121816-df4de30d264d
 )
 
 require (
