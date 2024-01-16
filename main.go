@@ -4,14 +4,12 @@ import (
 	"context"
 	"fmt"
 	"github.com/advanced-go/core/access"
-	"github.com/advanced-go/core/exchange"
 	"github.com/advanced-go/core/handler"
 	"github.com/advanced-go/core/http2"
 	"github.com/advanced-go/core/messaging"
 	runtime2 "github.com/advanced-go/core/runtime"
 	"github.com/advanced-go/example-agent/agent"
 	"github.com/advanced-go/example-domain/service"
-	"github.com/advanced-go/search/provider"
 	"log"
 	"net/http"
 	"os"
@@ -109,9 +107,9 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	agent.Run(time.Second * 10)
 
 	// Initialize messaging mux for the example-domain service HTTP handler
-	messaging.Handle(service.PkgPath, service.HttpHandler)
+	messaging.RegisterHandler(service.PkgPath, service.HttpHandler)
 	// Initialize exchange proxy for search provider
-	exchange.RegisterHandler("github/advanced-go/search/provider", provider.HttpHandler)
+	//exchange.RegisterHandler("github/advanced-go/search/provider", provider.HttpHandler)
 
 	// Initialize health handlers
 	r.Handle(healthLivelinessPattern, http.HandlerFunc(healthLivelinessHandler))
