@@ -106,8 +106,9 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	// Start application agent
 	agent.Run(time.Second * 10)
 
-	// Initialize messaging mux for the example-domain service HTTP handler
+	// Initialize messaging proxy for the example-domain service HTTP handler
 	messaging.RegisterHandler(service.PkgPath, service.HttpHandler)
+
 	// Initialize exchange proxy for search provider
 	//exchange.RegisterHandler("github/advanced-go/search/provider", provider.HttpHandler)
 
