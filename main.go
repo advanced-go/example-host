@@ -4,9 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/advanced-go/core/access"
-	"github.com/advanced-go/core/handler"
+	"github.com/advanced-go/core/host"
 	"github.com/advanced-go/core/http2"
-	"github.com/advanced-go/core/messaging"
 	runtime2 "github.com/advanced-go/core/runtime"
 	"github.com/advanced-go/example-agent/agent"
 	"github.com/advanced-go/example-domain/service"
@@ -98,7 +97,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	// Run startup where all registered resources/packages will be sent a startup message which may contain
 	// package configuration information such as authentication, default values...
 	m := createPackageConfiguration()
-	status := messaging.Startup[runtime2.Log](time.Second*4, m)
+	status := host.Startup[runtime2.Log](time.Second*4, m)
 	if !status.OK() {
 		return r, status
 	}
@@ -107,7 +106,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	agent.Run(time.Second * 10)
 
 	// Initialize messaging proxy for the example-domain service HTTP handler
-	messaging.RegisterHandler(service.PkgPath, service.HttpHandler)
+	host.RegisterHandler(service.PkgPath, service.HttpHandler)
 
 	// Initialize exchange proxy for search provider
 	//exchange.RegisterHandler("github/advanced-go/search/provider", provider.HttpHandler)
@@ -117,15 +116,15 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	r.Handle(healthReadinessPattern, http.HandlerFunc(healthReadinessHandler))
 
 	// Route all other requests to messaging mux
-	r.Handle("/", http.HandlerFunc(messaging.HttpHandler))
+	r.Handle("/", http.HandlerFunc(host.HttpHandler))
 
 	// Add host metrics handler and ingress access logging
-	return handler.HttpHostMetricsHandler(r, ""), runtime2.StatusOK()
+	return host.HttpHostMetricsHandler(r, ""), runtime2.StatusOK()
 }
 
 // TO DO : create package configuration information for startup
-func createPackageConfiguration() messaging.ContentMap {
-	return make(messaging.ContentMap)
+func createPackageConfiguration() host.ContentMap {
+	return make(host.ContentMap)
 }
 
 func healthLivelinessHandler(w http.ResponseWriter, r *http.Request) {
