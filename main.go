@@ -106,16 +106,16 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	agent.Run(time.Second * 10)
 
 	// Initialize messaging proxy for the example-domain service HTTP handler
-	host.RegisterHandler(service.PkgPath, service.HttpHandler)
+	host.RegisterHandler(service.PkgPath, host.NewIntermediary(AuthHandler, service.HttpHandler))
 
 	// Initialize exchange proxy for search provider
-	//exchange.RegisterHandler("github/advanced-go/search/provider", provider.HttpHandler)
+	//host.RegisterHandler("github/advanced-go/search/provider", provider.HttpHandler)
 
 	// Initialize health handlers
 	r.Handle(healthLivelinessPattern, http.HandlerFunc(healthLivelinessHandler))
 	r.Handle(healthReadinessPattern, http.HandlerFunc(healthReadinessHandler))
 
-	// Route all other requests to messaging mux
+	// Route all other requests to host proxy
 	r.Handle("/", http.HandlerFunc(host.HttpHandler))
 
 	// Add host metrics handler and ingress access logging
@@ -205,4 +205,16 @@ func logger(o access.Origin, traffic string, start time.Time, duration time.Dura
 	)
 	fmt.Printf("%v\n", s)
 	//return s
+}
+
+func AuthHandler(w http.ResponseWriter, r *http.Request) {
+	/*
+		if r != nil {
+			tokenString := r.Header.Get(host.Authorization)
+			if tokenString == "" {
+				w.WriteHeader(http.StatusUnauthorized)
+				fmt.Fprint(w, "Missing authorization header")
+			}
+		}
+	*/
 }

@@ -6,6 +6,8 @@ github.com/advanced-go/core v0.0.0-20240118142014-68b2c450d9e7 h1:v2AA1ANeX28i3T
 github.com/advanced-go/core v0.0.0-20240118142014-68b2c450d9e7/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
 github.com/advanced-go/core v0.0.0-20240129123929-d2d29f3c12dc h1:vx3+dbC3QY/9AUbraCbLs5O2sFey7QAfRn3sziYa7I4=
 github.com/advanced-go/core v0.0.0-20240129123929-d2d29f3c12dc/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
+github.com/advanced-go/core v0.0.0-20240129211333-20bff0c38d53 h1:7mEqCbS8J55GGi/Q9/VVuXV+wR/hrLk5WqJ5WVa478E=
+github.com/advanced-go/core v0.0.0-20240129211333-20bff0c38d53/go.mod h1:p58Ll2RUpEOeraoKxazyJpiPkWZelINYxxkcwCtwjUE=
 github.com/advanced-go/example-agent v0.0.0-20240115130224-06219914ac9c h1:vR4PxFRbOmLNJ01H/p/ZElNM0g2sXdqtoxVa0Jvt3y8=
 github.com/advanced-go/example-agent v0.0.0-20240115130224-06219914ac9c/go.mod h1:tk636pagS9fFYFIS7gYoZ02QD2VlRuEy5FZbGXpUHxs=
 github.com/advanced-go/example-agent v0.0.0-20240115134242-d810c36423a3 h1:QRm2Q3W27UPKqOET7D23niBuXhNTk7egltoChxk+W7Y=
