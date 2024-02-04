@@ -28,13 +28,10 @@ const (
 )
 
 func main() {
-	// Initialize runtime environment - defaults to debug
-	//runtime2.SetStageEnvironment()
-
-	start := time.Now()
 	displayRuntime()
-	handler, status := startup(http.NewServeMux())
-	if !status.OK() {
+	start := time.Now()
+	handler, ok := startup(http.NewServeMux())
+	if !ok {
 		os.Exit(1)
 	}
 	fmt.Println(fmt.Sprintf("started : %v", time.Since(start)))
@@ -84,7 +81,7 @@ func displayRuntime() {
 	fmt.Printf("env     : %v\n", runtime2.EnvStr())
 }
 
-func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
+func startup(r *http.ServeMux) (http.Handler, bool) {
 	// Set error handling formatter and logger
 	runtime2.SetErrorFormatter(nil)
 	runtime2.SetErrorLogger(nil)
@@ -97,9 +94,9 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	// Run startup where all registered resources/packages will be sent a startup message which may contain
 	// package configuration information such as authentication, default values...
 	m := createPackageConfiguration()
-	status := host.Startup[runtime2.Log](time.Second*4, m)
-	if !status.OK() {
-		return r, status
+	ok := host.Startup(time.Second*4, m)
+	if !ok {
+		return r, ok
 	}
 
 	// Start application agent
@@ -119,7 +116,7 @@ func startup(r *http.ServeMux) (http.Handler, runtime2.Status) {
 	r.Handle("/", http.HandlerFunc(host.HttpHandler))
 
 	// Add host metrics handler and ingress access logging
-	return host.HttpHostMetricsHandler(r, ""), runtime2.StatusOK()
+	return host.HttpHostMetricsHandler(r, ""), true
 }
 
 // TO DO : create package configuration information for startup
@@ -128,7 +125,7 @@ func createPackageConfiguration() host.ContentMap {
 }
 
 func healthLivelinessHandler(w http.ResponseWriter, r *http.Request) {
-	var status = runtime2.NewStatusOK()
+	var status = runtime2.StatusOK()
 	if status.OK() {
 		http2.WriteResponse[runtime2.Log](w, []byte("up"), status, nil)
 	} else {
@@ -137,7 +134,7 @@ func healthLivelinessHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func healthReadinessHandler(w http.ResponseWriter, r *http.Request) {
-	var status = runtime2.NewStatusOK()
+	var status = runtime2.StatusOK()
 	if status.OK() {
 		http2.WriteResponse[runtime2.Log](w, []byte("up"), status, nil)
 	} else {
@@ -145,7 +142,7 @@ func healthReadinessHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func logger(o access.Origin, traffic string, start time.Time, duration time.Duration, req *http.Request, resp *http.Response, routeName, routeTo string, threshold int, thresholdFlags string) {
+func logger(o *access.Origin, traffic string, start time.Time, duration time.Duration, req *http.Request, resp *http.Response, routeName, routeTo string, threshold int, thresholdFlags string) {
 	if req == nil {
 		req, _ = http.NewRequest("", "https://somehost.com/search?q=test", nil)
 	}
