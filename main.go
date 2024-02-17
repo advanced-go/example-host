@@ -19,6 +19,7 @@ import (
 )
 
 const (
+	portKey                 = "PORT"
 	addr                    = "0.0.0.0:8080"
 	writeTimeout            = time.Second * 300
 	readTimeout             = time.Second * 15
@@ -28,19 +29,21 @@ const (
 )
 
 func main() {
-	displayRuntime()
+	//os.Setenv(portKey, ":8082")
+	port := os.Getenv(portKey)
+	if port == "" {
+		port = addr
+	}
+	displayRuntime(port)
 	start := time.Now()
 	handler, ok := startup(http.NewServeMux())
 	if !ok {
 		os.Exit(1)
 	}
 	fmt.Println(fmt.Sprintf("started : %v", time.Since(start)))
-	httpPort := os.Getenv("PORT")
-	if httpPort == "" {
-		httpPort = addr
-	}
+
 	srv := http.Server{
-		Addr: httpPort, //addr,
+		Addr: port,
 		// Good practice to set timeouts to avoid Slowloris attacks.
 		WriteTimeout: writeTimeout,
 		ReadTimeout:  readTimeout,
@@ -72,8 +75,8 @@ func main() {
 	<-idleConnsClosed
 }
 
-func displayRuntime() {
-	fmt.Printf("addr    : %v\n", addr)
+func displayRuntime(port string) {
+	fmt.Printf("addr    : %v\n", port)
 	fmt.Printf("vers    : %v\n", runtime.Version())
 	fmt.Printf("os      : %v\n", runtime.GOOS)
 	fmt.Printf("arch    : %v\n", runtime.GOARCH)
@@ -82,14 +85,8 @@ func displayRuntime() {
 }
 
 func startup(r *http.ServeMux) (http.Handler, bool) {
-	// Set error handling formatter and logger
-	runtime2.SetErrorFormatter(nil)
-	runtime2.SetErrorLogger(nil)
-
-	// Set access logging handler and options
+	// Set access logger
 	access.SetLogger(logger)
-	//access.EnableTestLogger()
-	//access.EnableInternalLogging()
 
 	// Run startup where all registered resources/packages will be sent a startup message which may contain
 	// package configuration information such as authentication, default values...
